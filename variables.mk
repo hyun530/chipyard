@@ -275,12 +275,6 @@ PERMISSIVE_ON=+permissive
 PERMISSIVE_OFF=+permissive-off
 BINARY ?=
 BINARIES ?=
-ifdef STATE_INJECT
-override SIM_FLAGS += +dramsim +dramsim_ini_dir=$(TESTCHIP_DIR)/src/main/resources/dramsim2_ini +max-cycles=$(TIMEOUT_CYCLES) +no_hart0_msip
-else
-override SIM_FLAGS += +dramsim +dramsim_ini_dir=$(TESTCHIP_DIR)/src/main/resources/dramsim2_ini +max-cycles=$(TIMEOUT_CYCLES)
-endif
->>>>>>> af991728 (force based pc injection seems ok)
 VERBOSE_FLAGS ?= +verbose
 # get_out_name is a function, 1st argument is the binary
 get_out_name = $(subst $() $(),_,$(notdir $(basename $(1))))
@@ -292,6 +286,17 @@ override BINARY = $(addsuffix /mem.elf,$(LOADARCH))
 override BINARIES = $(addsuffix /mem.elf,$(LOADARCH))
 override get_out_name = $(shell basename $(dir $(1)))
 override LOADMEM = 1
+endif
+
+ifdef STATE_INJECT
+ifdef LOADARCH
+override SIM_FLAGS += +dramsim +dramsim_ini_dir=$(TESTCHIP_DIR)/src/main/resources/dramsim2_ini +max-cycles=$(TIMEOUT_CYCLES) +no_hart0_msip
+else
+# STATE_INJECT without loadarch should be like running a regular simulation
+override SIM_FLAGS += +dramsim +dramsim_ini_dir=$(TESTCHIP_DIR)/src/main/resources/dramsim2_ini +max-cycles=$(TIMEOUT_CYCLES)
+endif
+else
+override SIM_FLAGS += +dramsim +dramsim_ini_dir=$(TESTCHIP_DIR)/src/main/resources/dramsim2_ini +max-cycles=$(TIMEOUT_CYCLES)
 endif
 
 #########################################################################################
