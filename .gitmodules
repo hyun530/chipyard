@@ -64,9 +64,6 @@
 [submodule "software/nvdla-workload"]
 	path = software/nvdla-workload
 	url = https://github.com/ucb-bar/nvdla-workload.git
-[submodule "tools/dromajo/dromajo-src"]
-	path = tools/dromajo/dromajo-src
-	url = https://github.com/riscv-boom/dromajo.git
 [submodule "generators/riscv-sodor"]
 	path = generators/riscv-sodor
 	url = https://github.com/ucb-bar/riscv-sodor.git
@@ -142,3 +139,15 @@
 [submodule "generators/saturn"]
 	path = generators/saturn
 	url = git@github.com:ucb-bar/saturn.git
+[submodule "generators/caliptra-aes-acc"]
+	path = generators/caliptra-aes-acc
+	url = https://github.com/ucb-bar/caliptra-aes-acc
+[submodule "generators/rocc-acc-utils"]
+	path = generators/rocc-acc-utils
+	url = https://github.com/ucb-bar/rocc-acc-utils
+[submodule "tools/install-circt"]
+	path = tools/install-circt
+	url = https://github.com/circt/install-circt/
+[submodule "toolchains/riscv-tools/riscv-spike-devices"]
+	path = toolchains/riscv-tools/riscv-spike-devices
+	url = https://github.com/ucb-bar/spike-devices.git
